@@ -3,12 +3,16 @@ import { supabase } from '../lib/supabase'
 import { Plus, X, Upload, Pencil, Trash2, SlidersHorizontal } from 'lucide-react'
 import SearchFilter from '../components/SearchFilter'
 import toast from 'react-hot-toast'
+import { useAuth } from '../context/AuthContext'
 
 export default function Properties() {
   const [properties, setProperties] = useState([])
   const [loading, setLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [editingId, setEditingId] = useState(null)
+  const { role } = useAuth()
+
+
 
   // 🔍 Search & Filter states
   const [searchTerm, setSearchTerm] = useState('')
@@ -246,13 +250,11 @@ export default function Properties() {
                       >
                         <Pencil size={16} />
                       </button>
-                      <button
-                        onClick={() => handleDelete(prop.id, prop.title)}
-                        className="p-1.5 text-red-600 hover:bg-red-50 rounded"
-                        title="Delete"
-                      >
-                        <Trash2 size={16} />
-                      </button>
+                      {role === 'admin' && (
+  <button onClick={() => handleDelete(prop.id, prop.title)} className="p-1.5 text-red-600 hover:bg-red-50 rounded" title="Delete">
+    <Trash2 size={16} />
+  </button>
+)}
                     </div>
                   </td>
                 </tr>

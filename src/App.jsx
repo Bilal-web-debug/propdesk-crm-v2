@@ -11,6 +11,7 @@ import Projects from './pages/Projects'
 import Tasks from './pages/Tasks'
 import { Toaster } from 'react-hot-toast'
 import Settings from './pages/Settings'
+import Reports from './pages/Reports'
 
 
 
@@ -54,6 +55,7 @@ export default function App() {
           <Route path="projects" element={<Projects />} />
           <Route path="tasks" element={<Tasks />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="reports" element={<Reports />} />
           
           {/* Future routes can be added here:
           <Route path="leads" element={<Leads />} />
