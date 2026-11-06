@@ -1,12 +1,84 @@
+/* ============================================
+   1. GOOGLE FONTS — must be the VERY FIRST line
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* ============================================
+   2. TAILWIND (v4 style)
+   ============================================ */
 @import "tailwindcss";
 
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 
+/* ============================================
+   3. BASE STYLES
+   ============================================ */
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #f9fafb; /* Halka gray background */
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-color: #f9fafb;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+/* Tabular numerals — used by stats, prices, dates */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Smooth theme transitions */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* Custom shadows */
+  --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.04), 0 1px 3px 0 rgb(0 0 0 / 0.06);
+  --shadow-card-hover: 0 10px 25px -5px rgb(0 0 0 / 0.10), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+  --shadow-glow-blue: 0 0 24px -4px rgba(59, 130, 246, 0.35);
+  --shadow-glow-violet: 0 0 24px -4px rgba(139, 92, 246, 0.35);
+  --shadow-glow-orange: 0 0 24px -4px rgba(249, 115, 22, 0.35);
+  --shadow-glow-emerald: 0 0 24px -4px rgba(16, 185, 129, 0.35);
+  --shadow-glow-pink: 0 0 24px -4px rgba(236, 72, 153, 0.35);
+
+  /* Custom animations */
+  --animate-fade-up: fadeUp 0.5s ease-out both;
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-float: float 4s ease-in-out infinite;
+  --animate-pulse-dot: pulseDot 1.8s ease-in-out infinite;
+  --animate-scale-in: scaleIn 0.4s ease-out both;
+
+  /* Keyframes (v4 syntax — declared inside @theme) */
+  @keyframes fadeUp {
+    0%   { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scaleIn {
+    0%   { opacity: 0; transform: scale(0.94); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes shimmer {
+    0%   { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%      { transform: translateY(-6px); }
+  }
+  @keyframes pulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.5; transform: scale(1.4); }
+  }
 }
